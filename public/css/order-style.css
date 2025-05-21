@@ -1,0 +1,590 @@
+/* Order Form Elementor Style */
+.elementor-widget-wrap {
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+}
+
+.elementor-element-populated {
+    padding: 10px 20px;
+}
+
+.elementor-column-gap-default > .elementor-column > .elementor-element-populated {
+    padding: 10px;
+}
+
+.elementor-element {
+    --widgets-spacing: 20px 20px;
+    --widgets-spacing-row: 20px;
+    --widgets-spacing-column: 20px;
+}
+
+.elementor-widget-container {
+    margin-bottom: 15px;
+}
+
+/* Order Form Header */
+.elementor-heading-title {
+    font-size: 40px !important;
+    line-height: 1.4;
+    text-align: center;
+    margin-bottom: 20px !important;
+    font-weight: bold;
+    color: #007A11;
+    padding: 0 15px;
+}
+
+.elementor-heading-title b {
+    color: #EE5E11;
+    font-weight: bold;
+}
+
+/* Main container styles */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #e8ffe8;
+    padding: 0;
+}
+
+body {
+    background-color: #e8ffe8;
+}
+
+/* Border style for the main container */
+.elementor-border-style {
+    border-style: solid;
+    border-width: 0 0 0 0;
+    border-color: transparent;
+    border-radius: 0 60px 0 0;
+    margin: 0;
+    padding: 0;
+    background-color: #e8ffe8;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add the curved blue border at the top */
+.elementor-border-style::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 15px;
+    background-color: #1e73be;
+    border-radius: 0 60px 0 0;
+}
+
+/* Product Selection Area */
+.wcf-product-option-wrap {
+    margin-bottom: 30px;
+}
+
+#your_products_heading {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #000;
+    padding: 10px 0;
+}
+
+.wcf-qty-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+    background-color: transparent;
+    padding: 0;
+    position: relative;
+    margin-top: 20px;
+}
+
+.wcf-qty-row {
+    position: relative;
+    background-color: #fff;
+    border-radius: 5px;
+    width: 100%;
+    min-width: 250px;
+    margin-bottom: 15px;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .wcf-qty-row {
+        width: 100%;
+    }
+}
+
+.wcf-qty-row {
+    width: 100%;
+}
+
+/* Clean ribbon style */
+.wcf-qty-row {
+    position: relative;
+}
+
+.ribbon {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    z-index: 5;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 90px 90px 0;
+    border-color: transparent #ff5722 transparent transparent;
+}
+
+.ribbon::before,
+.ribbon::after {
+    content: none !important;
+    display: none !important;
+}
+
+.ribbon span {
+    position: absolute;
+    top: 20px;
+    transform: rotate(45deg);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    width: 90px;
+}
+
+.ribbon span::before,
+.ribbon span::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Economy ribbon - same style */
+.ribbon.economy span {
+    color: white;
+}
+
+.wcf-highlight {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    position: relative;
+    overflow: visible;
+}
+
+.wcf-qty-row:nth-child(3) {
+    position: relative;
+    overflow: visible;
+}
+
+.economy span {
+    background: #ff5722;
+}
+
+.wcf-item {
+    display: flex;
+    align-items: center;
+}
+
+.wcf-item-selector {
+    margin-right: 10px;
+}
+
+.wcf-item-selector input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #ff0000;
+    margin-top: 2px;
+}
+
+.wcf-item-image {
+    width: 50px;
+    margin-right: 15px;
+    position: relative;
+}
+
+.wcf-item-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0;
+}
+
+.wcf-item-content-options {
+    flex: 1;
+}
+
+.wcf-item-wrap {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.wcf-item-subtext {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.wcf-price {
+    font-weight: bold;
+    color: #333;
+    font-size: 16px;
+}
+
+/* Adjustments for the package layout */
+.wcf-qty-options {
+    padding: 0 10px;
+}
+
+.wcf-qty-row {
+    padding: 15px 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+/* Orange corner badges - removed */
+.wcf-qty-row:nth-child(1)::after,
+.wcf-qty-row:nth-child(3)::after {
+    content: none;
+    display: none;
+}
+
+/* Text for the badges - removed */
+.wcf-qty-row:nth-child(1)::before {
+    content: none;
+    display: none;
+}
+
+.wcf-qty-row:nth-child(3)::before {
+    content: none;
+    display: none;
+}
+
+/* WhatsApp banner at the top */
+.whatsapp-banner {
+    background-color: #007A11;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.whatsapp-banner a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Billing Fields */
+.woocommerce-billing-fields {
+    margin-bottom: 30px;
+}
+
+#billing_fields_heading {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.form-row {
+    margin-bottom: 15px;
+}
+
+.form-row label {
+    display: block;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-row input, 
+.form-row select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.required {
+    color: red;
+}
+
+/* Shipping Methods */
+.wcf-shipping-methods-wrapper {
+    margin: 30px 0;
+}
+
+.wcf-shipping-methods-title {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.woocommerce-shipping-methods {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.woocommerce-shipping-methods li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.woocommerce-shipping-methods li label {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Order Review */
+#order_review_heading {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.shop_table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.shop_table th, 
+.shop_table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.shop_table thead th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+.wcf-product-image {
+    display: flex;
+    align-items: center;
+}
+
+.wcf-product-thumbnail {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.wcf-product-thumbnail img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.wcf-product-name {
+    font-size: 14px;
+}
+
+/* Order Bump */
+.wcf-bump-order-wrap {
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+.wcf-bump-order-field-wrap {
+    margin-bottom: 15px;
+}
+
+.wcf-bump-order-cb {
+    margin-right: 5px;
+    transform: scale(1.2);
+}
+
+.wcf-bump-order-label {
+    font-weight: bold;
+    color: #333;
+    font-size: 16px;
+}
+
+/* New honey offer container styles */
+.honey-offer-container {
+    display: flex;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    overflow: hidden;
+    max-height: none;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.honey-image-container {
+    width: 35%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+}
+
+.honey-image {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+.honey-content {
+    width: 60%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wcf-bump-order-offer {
+    margin-bottom: 15px;
+}
+
+.wcf-bump-order-bump-highlight {
+    background-color: #EE5E11;
+    color: white;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.wcf-bump-order-desc {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Payment Methods */
+.wc_payment_methods {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.wc_payment_method {
+    margin-bottom: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.wc_payment_method label {
+    font-weight: bold;
+    color: #333;
+}
+
+.payment_box {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+/* Place Order Button */
+#place_order {
+    background-color: #EE5E11;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 25px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+#place_order:hover {
+    background-color: #d45410;
+}
+
+/* Elementor Border Style */
+.elementor-border-style {
+    border-style: solid;
+    border-width: 30px 5px 5px 5px;
+    border-color: #0B6298ED;
+    border-radius: 0px 60px 0px 60px;
+    margin: 0px 0px 20px 0px;
+    padding: 10px 20px 10px 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .wcf-qty-row {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .wcf-content-container {
+        flex-direction: column;
+    }
+    
+    .wcf-bump-order-image {
+        margin-right: 0;
+        margin-bottom: 15px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .wcf-image {
+        max-width: 120px;
+    }
+    
+    /* Responsive honey offer container */
+    .honey-offer-container {
+        flex-direction: column;
+    }
+    
+    .honey-image-container {
+        width: 100%;
+        padding: 15px;
+        text-align: center;
+    }
+    
+    .honey-content {
+        width: 100%;
+        padding: 15px;
+    }
+    
+    .wcf-bump-order-desc {
+        font-size: 14px;
+        line-height: 1.4;
+        max-width: 100%;
+        white-space: normal;
+    }
+    
+    .honey-image {
+        max-width: 200px;
+        margin: 0 auto;
+    }
+}

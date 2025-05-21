@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Needus - Prachin Bangla Limited</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/order-style.css">
+</head>
+<body>
+    <div class="whatsapp-banner">
+        WhatsApp : <a href="https://wa.me/01608233898">01608233898</a> / <a href="https://wa.me/01314604771">01314604771</a>
+    </div>
+    <div class="container">
+        <div class="elementor-border-style">
+            <div class="elementor-widget-wrap elementor-element-populated">
+                <div class="elementor-widget-container">
+                    <h2 class="elementor-heading-title elementor-size-default">অর্ডার করতে আপনার সঠিক তথ্য দিয়ে নিচের ফর্মটি পূরণ করে <span style="color:#EE5E11">Confirm Order</span> এ ক্লিক করুন:- <span style="color:#EE5E11">(অর্ডার দিয়ে প্রোডাক্ট না নিলে ডেলিভারি চার্জ দিতে হবে)</span></h2>
+                </div>
+
+                <form action="/order" method="POST">
+                    <h3 style="font-size: 18px; margin-bottom: 15px; color: #000;">কোন প্যাকেজটি নিতে চান সিলেক্ট করুন :</h3>
+                    <div class="wcf-qty-options">
+                        <div class="wcf-qty-row">
+                            <div class="wcf-item">
+                                <div class="wcf-item-selector">
+                                    <input type="radio" id="package1" name="package" value="1month" checked>
+                                </div>
+                                <div class="wcf-item-image">
+                                    <img src="images/product-small.png" alt="আজমা কিউর (১ মাসের প্যাকেজ)">
+                                </div>
+                                <div class="wcf-item-content-options">
+                                    <div class="wcf-item-wrap">আজমা কিউর (১ মাসের প্যাকেজ)</div>
+                                    <div class="wcf-price">
+                                        <div class="wcf-display-price">1,800.00৳</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wcf-qty-row">
+                            <div class="wcf-item">
+                                <div class="wcf-item-selector">
+                                    <input type="radio" id="package2" name="package" value="15days">
+                                </div>
+                                <div class="wcf-item-image">
+                                    <img src="images/product-small.png" alt="আজমা কিউর (১৫ দিনের প্যাকেজ)">
+                                </div>
+                                <div class="wcf-item-content-options">
+                                    <div class="wcf-item-wrap">আজমা কিউর (১৫ দিনের প্যাকেজ)</div>
+                                    <div class="wcf-price">
+                                        <div class="wcf-display-price">1,000.00৳</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wcf-qty-row">
+                            <div class="wcf-item">
+                                <div class="wcf-item-selector">
+                                    <input type="radio" id="package3" name="package" value="3month">
+                                </div>
+                                <div class="wcf-item-image">
+                                    <img src="images/product-small.png" alt="আজমা কিউর (৩ মাসের প্যাকেজ)">
+                                </div>
+                                <div class="wcf-item-content-options">
+                                    <div class="wcf-item-wrap">আজমা কিউর (৩ মাসের প্যাকেজ)</div>
+                                    <div class="wcf-item-subtext">৫০০ গ্রাম মধু ফ্রি</div>
+                                    <div class="wcf-price">
+                                        <div class="wcf-display-price">5,000.00৳</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+ 
+
+        <section id="testimonials" class="testimonials-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center mb-4">
+                        <h2 class="section-title">কাস্টমার রিভিউ</h2>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <!-- Indicators -->
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#reviewCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#reviewCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#reviewCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                <button type="button" data-bs-target="#reviewCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                <button type="button" data-bs-target="#reviewCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                                <button type="button" data-bs-target="#reviewCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                            </div>
+                            
+                            <!-- Slides -->
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="review-slide">
+                                        <img src="https://naturivabd.com/wp-content/uploads/2025/01/Asthma-Cure-Review_0.0.png" alt="Customer Review 1" class="review-image">
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="review-slide">
+                                        <img src="https://naturivabd.com/wp-content/uploads/2025/01/Asthma-Cure-Review_0.1.png" alt="Customer Review 2" class="review-image">
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="review-slide">
+                                        <img src="https://naturivabd.com/wp-content/uploads/2025/01/Asthma-Cure-Review_14.png" alt="Customer Review 3" class="review-image">
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="review-slide">
+                                        <img src="https://naturivabd.com/wp-content/uploads/2025/01/Asthma-Cure-Review_0.0.png" alt="Customer Review 4" class="review-image">
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="review-slide">
+                                        <img src="https://naturivabd.com/wp-content/uploads/2025/01/Asthma-Cure-Review_0.1.png" alt="Customer Review 5" class="review-image">
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="review-slide">
+                                        <img src="https://naturivabd.com/wp-content/uploads/2025/01/Asthma-Cure-Review_14.png" alt="Customer Review 6" class="review-image">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Controls -->
+                            <button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#reviewCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                           <section class="product-section">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12 text-center">
+                                    <div class="order-button-wrapper">
+                                        <a href="#order" class="order-more-button">
+                                            <span>অর্ডার করতে চাই</span>
+                                            <i class="fas fa-arrow-circle-down"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+            <section class="pricing-section" id="pricing">
+            <div class="pricing-container">
+                <div class="pricing-item">
+                    ৩ মাসের জন্য ৩০০ গ্রাম দৈনিক ২ বেলা = <span class="price">৫০০০/=</span> টাকা
+                </div>
+                <div class="pricing-item">
+                    ১ মাসের জন্য ১০০ গ্রাম দৈনিক ২ বেলা = <span class="price">১৮০০/=</span> টাকা
+                </div>
+                <div class="pricing-item">
+                    ১৫ দিনের জন্য ৫০ গ্রাম দৈনিক ২ বেলা = <span class="price">১০০০/=</span> টাকা
+                </div>
+                <div class="delivery-info">
+                    ডেলিভারি চার্জ : ঢাকা সিটি তে ৫০ টাকা, ঢাকা সিটির বাহিরে ১০০ টাকা
+                </div>
+                <div class="contact-info">
+                    সরাসরি কথা বলতে ক্লিক করুন <a href="tel:+8809611900800">+8809611900800</a>
+                </div>
+                <div class="website-link">
+                    <a href="http://localhost/Landing/public" class="btn btn-success mt-2">Visit Our Website</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="order-form-section" id="pricing">
+            <div class="pricing-container">
+                <div class="elementor-border-style">
+                    <div class="elementor-widget-wrap elementor-element-populated">
+                        <div class="elementor-widget-container">
+                            <h2 class="elementor-heading-title elementor-size-default">অর্ডার করতে আপনার সঠিক তথ্য দিয়ে নিচের ফর্মটি পূরণ করে <span style="color:#EE5E11">Confirm Order</span> এ ক্লিক করুন:- <span style="color:#EE5E11">(অর্ডার দিয়ে প্রোডাক্ট না নিলে ডেলিভারি চার্জ দিতে হবে)</span></h2>
+                        </div>
+
+                        <form action="/order" method="POST">
+                            <h3 style="font-size: 18px; margin-bottom: 15px; color: #000;">কোন প্যাকেজটি নিতে চান সিলেক্ট করুন :</h3>
+                            <div class="wcf-qty-options">
+                                <div class="wcf-qty-row">
+                                    <div class="wcf-item">
+                                        <div class="wcf-item-selector">
+                                            <input type="radio" id="package1" name="package" value="1month" checked>
+                                        </div>
+                                        <div class="wcf-item-image">
+                                            <img src="images/product-small.png" alt="আজমা কিউর (১ মাসের প্যাকেজ)">
+                                        </div>
+                                        <div class="wcf-item-content-options">
+                                            <div class="wcf-item-wrap">আজমা কিউর (১ মাসের প্যাকেজ)</div>
+                                            <div class="wcf-price">
+                                                <div class="wcf-display-price">1,800.00৳</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="wcf-qty-row">
+                                    <div class="wcf-item">
+                                        <div class="wcf-item-selector">
+                                            <input type="radio" id="package2" name="package" value="15days">
+                                        </div>
+                                        <div class="wcf-item-image">
+                                            <img src="images/product-small.png" alt="আজমা কিউর (১৫ দিনের প্যাকেজ)">
+                                        </div>
+                                        <div class="wcf-item-content-options">
+                                            <div class="wcf-item-wrap">আজমা কিউর (১৫ দিনের প্যাকেজ)</div>
+                                            <div class="wcf-price">
+                                                <div class="wcf-display-price">1,000.00৳</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="wcf-qty-row">
+                                    <div class="wcf-item">
+                                        <div class="wcf-item-selector">
+                                            <input type="radio" id="package3" name="package" value="3month">
+                                        </div>
+                                        <div class="wcf-item-image">
+                                            <img src="images/product-small.png" alt="আজমা কিউর (৩ মাসের প্যাকেজ)">
+                                        </div>
+                                        <div class="wcf-item-content-options">
+                                            <div class="wcf-item-wrap">আজমা কিউর (৩ মাসের প্যাকেজ)</div>
+                                            <div class="wcf-item-subtext">৫০০ গ্রাম মধু ফ্রি</div>
+                                            <div class="wcf-price">
+                                                <div class="wcf-display-price">5,000.00৳</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="wcf-col2-set" id="customer_details">
+                                <div class="wcf-col-1">
+                                    <div class="woocommerce-billing-fields">
+                                        <h3 id="billing_fields_heading">Billing details</h3>
+                                        <div class="woocommerce-billing-fields__field-wrapper">
+                                            <p class="form-row form-row-first wcf-column-100 validate-required" id="billing_first_name_field">
+                                                <label for="billing_first_name" class="required_field">আপনার নাম&nbsp;<span class="required" aria-hidden="true">*</span></label>
+                                                <span class="woocommerce-input-wrapper">
+                                                    <input type="text" class="input-text" name="name" id="billing_first_name" placeholder="এখানে আপনার নাম লিখুন" value="" required>
+                                                </span>
+                                            </p>
+                                            
+                                            <p class="form-row address-field wcf-column-100 validate-required form-row-wide" id="billing_address_1_field">
+                                                <label for="billing_address_1" class="required_field">আপনার সম্পূর্ণ ঠিকানা&nbsp;<span class="required" aria-hidden="true">*</span></label>
+                                                <span class="woocommerce-input-wrapper">
+                                                    <input type="text" class="input-text" name="address" id="billing_address_1" placeholder="এখানে আপনার সম্পূর্ণ ঠিকানা লিখুন" value="" required>
+                                                </span>
+                                            </p>
+                                            
+                                            <p class="form-row form-row-wide wcf-column-100 validate-required validate-phone" id="billing_phone_field">
+                                                <label for="billing_phone" class="required_field">আপনার মোবাইল নাম্বার&nbsp;<span class="required" aria-hidden="true">*</span></label>
+                                                <span class="woocommerce-input-wrapper">
+                                                    <input type="tel" class="input-text" name="phone" id="billing_phone" placeholder="এখানে আপনার মোবাইল নাম্বার সঠিকভাবে লিখুন" value="" required>
+                                                </span>
+                                            </p>
+                                            
+                                            <p class="form-row form-row-wide address-field update_totals_on_change wcf-column-100" id="billing_country_field">
+                                                <label for="billing_country">Country / Region&nbsp;<span class="optional">(optional)</span></label>
+                                                <span class="woocommerce-input-wrapper">
+                                                    <select name="country" id="billing_country" class="country_select">
+                                                        <option value="Bangladesh" selected>Bangladesh</option>
+                                                    </select>
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="wcf-shipping-methods-wrapper">
+                                <h3 class="wcf-shipping-methods-title">Shipping</h3>
+                                <div class="wcf-shipping-method-options">
+                                    <ul id="shipping_method" class="woocommerce-shipping-methods">
+                                        <li>
+                                            <input type="radio" name="shipping_method" id="wcf_shipping_method_0_flat_rate2" value="outside_dhaka" checked>
+                                            <label for="wcf_shipping_method_0_flat_rate2">ঢাকা সিটির বাহিরে: <span class="woocommerce-Price-amount amount">100.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="shipping_method" id="wcf_shipping_method_0_flat_rate3" value="inside_dhaka">
+                                            <label for="wcf_shipping_method_0_flat_rate3">ঢাকা সিটিতে: <span class="woocommerce-Price-amount amount">50.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="wcf-order-wrap">
+                                <h3 id="order_review_heading">Your order</h3>
+                                <div id="order_review" class="woocommerce-checkout-review-order">
+                                    <table class="shop_table woocommerce-checkout-review-order-table cartflows_table">
+                                        <thead>
+                                            <tr>
+                                                <th class="product-name">Product</th>
+                                                <th class="product-total">Subtotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="cart_item">
+                                                <td class="product-name">
+                                                    <div class="wcf-product-image">
+                                                        <div class="wcf-product-thumbnail">
+                                                            <img width="60" height="60" src="images/product-small.png" alt="অ্যাজমা কিউর (১ মাসের প্যাকেজ)">
+                                                        </div>
+                                                        <div class="wcf-product-name">অ্যাজমা কিউর (১ মাসের প্যাকেজ)</div>
+                                                    </div>&nbsp;
+                                                    <strong class="product-quantity">×&nbsp;1</strong>
+                                                </td>
+                                                <td class="product-total">
+                                                    <span class="woocommerce-Price-amount amount">1,800.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="cart-subtotal">
+                                                <th>Subtotal</th>
+                                                <td><span class="woocommerce-Price-amount amount">1,800.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></td>
+                                            </tr>
+                                            <tr class="cart-shipping">
+                                                <th>Shipping</th>
+                                                <td>ঢাকা সিটির বাহিরে: <span class="woocommerce-Price-amount amount">100.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></td>
+                                            </tr>
+                                            <tr class="order-total">
+                                                <th>Total</th>
+                                                <td><strong><span class="woocommerce-Price-amount amount">1,900.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></strong></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+
+                                    <div class="wcf-bump-order-grid-wrap wcf-all-bump-order-wrap wcf-after-order">
+                                        <div class="wcf-bump-order-wrap wcf-bump-order-style-1 wcf-after-order wcf-ob-column-100">
+                                            <div class="wcf-bump-order-content wcf-bump-order-image-left">
+                                                <div class="wcf-bump-order-field-wrap">
+                                                    <label>
+                                                        <input type="checkbox" id="wcf-bump-order-cb" class="wcf-bump-order-cb" name="honey_addon" value="1">
+                                                        <span class="wcf-bump-order-label">মধু সহ নিতে চাই</span>
+                                                    </label>
+                                                </div>
+                                                <div class="wcf-content-container">
+                                                    <div class="wcf-bump-order-offer-content-left wcf-bump-order-image">
+                                                        <img src="images/honey.png" class="wcf-image" alt="মধু">
+                                                    </div>
+                                                    <div class="wcf-bump-order-offer-content-right">
+                                                        <div class="wcf-bump-order-offer">
+                                                            <span class="wcf-bump-order-bump-highlight">One Time Offer</span>
+                                                        </div>
+                                                        <div class="wcf-bump-order-desc">
+                                                            <p>শুধুমাত্র ৩ মাসের প্যাকেজের সাথে ৫০০ গ্রাম মধু ফ্রি!</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="payment" class="woocommerce-checkout-payment">
+                                        <div class="wcf-payment-option-heading">
+                                            <h3 id="payment_heading">Payment method</h3>
+                                        </div>
+                                        <ul class="wc_payment_methods payment_methods methods">
+                                            <li class="wc_payment_method payment_method_cod">
+                                                <input id="payment_method_cod" type="radio" class="input-radio" name="payment_method" value="cod" checked="checked">
+                                                <label for="payment_method_cod">ক্যাশ অন ডেলিভারি </label>
+                                                <div class="payment_box payment_method_cod">
+                                                    <p>আমি অবশ্যই পণ্যটি রিসিভ করবো, পণ্যটি হাতে পেয়ে টাকা পরিশোধ করবো, ইনশাআল্লাহ</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="form-row place-order">
+                                            <button type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="Place order" data-value="Place order">Confirm Order - 1900.00৳</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <div class="elementor-widget-container" style="margin-top: 20px;">
+                            <h2 class="elementor-heading-title elementor-size-default">অর্ডার কন্ফার্ম করতে Confirm Order এ ক্লিক করুন</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            
+        </section>
+
+        
+
+        <footer class="py-3 text-center">
+            <div class="footer-copyright">
+                <p>&copy; <?php echo date('Y'); ?>https://www.prachinebangla.com/</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
