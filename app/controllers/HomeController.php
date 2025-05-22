@@ -221,12 +221,12 @@ class HomeController {
         
         // Only use default reviews if the setting doesn't exist at all (first time setup)
         return [
-            ['image' => 'Customer Review 1.png', 'alt' => 'Customer Review 1'],
-            ['image' => 'Customer Review 2.jpg', 'alt' => 'Customer Review 2'],
-            ['image' => 'Customer Review3.jpg', 'alt' => 'Customer Review 3'],
-            ['image' => 'Customer Review 4.jpg', 'alt' => 'Customer Review 4'],
-            ['image' => 'Customer Review 1.png', 'alt' => 'Customer Review 5'],
-            ['image' => 'Customer Review 2.jpg', 'alt' => 'Customer Review 6']
+            ['image' => 'CustomerReview1.png', 'alt' => 'Customer Review 1'],
+            ['image' => 'CustomerReview2.jpg', 'alt' => 'Customer Review 2'],
+            ['image' => 'CustomerReview3.jpg', 'alt' => 'Customer Review 3'],
+            ['image' => 'CustomerReview4.jpg', 'alt' => 'Customer Review 4'],
+            ['image' => 'CustomerReview1.png', 'alt' => 'Customer Review 5'],
+            ['image' => 'CustomerReview2.jpg', 'alt' => 'Customer Review 6']
         ];
     }
 }

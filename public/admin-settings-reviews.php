@@ -50,6 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Save customer reviews as JSON
     $customerReviewsJson = json_encode($customerReviews, JSON_UNESCAPED_UNICODE);
     
+    // Debug information
+    error_log('Saving customer reviews: ' . $customerReviewsJson);
+    
     // Check if customer_reviews setting exists
     $stmt = $db->prepare("SELECT id FROM settings WHERE setting_key = :key");
     $stmt->execute([':key' => 'customer_reviews']);
@@ -295,12 +298,56 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                             try {
                                 const response = JSON.parse(xhr.responseText);
                                 if (response.success) {
-                                    uploadStatus.textContent = 'Upload successful! Refresh the page to see your changes.';
+                                    uploadStatus.textContent = 'Upload successful! Image added to review list.';
                                     uploadStatus.classList.remove('alert-danger', 'd-none');
                                     uploadStatus.classList.add('alert-success');
                                     
                                     // Clear the file input
                                     reviewImageUpload.value = '';
+                                    
+                                    // Automatically add the uploaded image to the review list
+                                    const reviewCount = document.querySelectorAll('.review-item').length;
+                                    const newIndex = reviewCount;
+                                    
+                                    const newReviewHtml = `
+                                    <div class="review-item mb-3 p-3 border rounded">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <h5 class="mb-0">Review #${newIndex + 1}</h5>
+                                            <button type="button" class="btn btn-sm btn-danger delete-review">
+                                                <i class="fas fa-trash"></i> Delete
+                                            </button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Image</label>
+                                            <input type="text" name="customer_reviews[${newIndex}][image]" class="form-control" value="${response.filename}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Alt Text</label>
+                                            <input type="text" name="customer_reviews[${newIndex}][alt]" class="form-control" value="Customer Review">
+                                        </div>
+                                        <div class="mt-2">
+                                            <img src="images/${response.filename}" alt="Preview" class="img-thumbnail" style="max-height: 100px;">
+                                        </div>
+                                    </div>
+                                    `;
+                                    
+                                    // Add the new review to the container
+                                    const tempDiv = document.createElement('div');
+                                    tempDiv.innerHTML = newReviewHtml;
+                                    const newReviewElement = tempDiv.firstElementChild;
+                                    reviewsContainer.appendChild(newReviewElement);
+                                    
+                                    // Add event listener to the new delete button
+                                    const deleteButton = newReviewElement.querySelector('.delete-review');
+                                    deleteButton.addEventListener('click', function() {
+                                        if (confirm('Are you sure you want to delete this review?')) {
+                                            const reviewItem = this.closest('.review-item');
+                                            reviewItem.remove();
+                                        }
+                                    });
+                                    
+                                    // Auto-submit the form to save the new review to the database
+                                    document.querySelector('form').submit();
                                 } else {
                                     uploadStatus.textContent = 'Error: ' + response.message;
                                     uploadStatus.classList.remove('alert-success', 'd-none');

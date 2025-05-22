@@ -99,7 +99,7 @@
                                     <?php foreach ($customer_reviews as $index => $review): ?>
                                         <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
                                             <div class="review-slide">
-                                                <img src="<?php echo $config['assets_url']; ?>/images/<?php echo htmlspecialchars($review['image']); ?>" alt="<?php echo htmlspecialchars($review['alt']); ?>" class="review-image">
+                                                <img src="<?php echo $config['base_url']; ?>/public/images/<?php echo htmlspecialchars($review['image']); ?>" alt="<?php echo htmlspecialchars($review['alt']); ?>" class="review-image">
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
@@ -107,22 +107,22 @@
                                     <!-- Default reviews if none are set -->
                                     <div class="carousel-item active">
                                         <div class="review-slide">
-                                            <img src="<?php echo $config['assets_url']; ?>/images/Customer Review 1.png" alt="Customer Review 1" class="review-image">
+                                            <img src="<?php echo $config['base_url']; ?>/public/images/CustomerReview1.png" alt="Customer Review 1" class="review-image">
                                         </div>
                                     </div>
                                     <div class="carousel-item">
                                         <div class="review-slide">
-                                            <img src="<?php echo $config['assets_url']; ?>/images/Customer Review 2.jpg" alt="Customer Review 2" class="review-image">
+                                            <img src="<?php echo $config['base_url']; ?>/public/images/CustomerReview2.jpg" alt="Customer Review 2" class="review-image">
                                         </div>
                                     </div>
                                     <div class="carousel-item">
                                         <div class="review-slide">
-                                            <img src="<?php echo $config['assets_url']; ?>/images/Customer Review3.jpg" alt="Customer Review 3" class="review-image">
+                                            <img src="<?php echo $config['base_url']; ?>/public/images/CustomerReview3.jpg" alt="Customer Review 3" class="review-image">
                                         </div>
                                     </div>
                                     <div class="carousel-item">
                                         <div class="review-slide">
-                                            <img src="<?php echo $config['assets_url']; ?>/images/Customer Review 4.jpg" alt="Customer Review 4" class="review-image">
+                                            <img src="<?php echo $config['base_url']; ?>/public/images/CustomerReview4.jpg" alt="Customer Review 4" class="review-image">
                                         </div>
                                     </div>
                                 <?php endif; ?>
