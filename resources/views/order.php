@@ -163,27 +163,41 @@
                                                 <div class="wcf-product-thumbnail">
                                                     <img width="60" height="60" src="<?php echo $config['assets_url']; ?>/images/product.webp" alt="নিডাস (১ মাসের প্যাকেজ)">
                                                 </div>
-                                                <div class="wcf-product-name">নিডাস (১ মাসের প্যাকেজ)</div>
+                                                <div class="wcf-product-name">১ বক্সে ৯০টি ট্যাবলেট | ১ মাস ১৫ দিনের কোর্স</div>
                                             </div>&nbsp;
                                             <strong class="product-quantity">×&nbsp;1</strong>
                                         </td>
                                         <td class="product-total">
-                                            <span class="woocommerce-Price-amount amount">1,800.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span>
+                                            <span class="woocommerce-Price-amount amount">1,200.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span>
                                         </td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr class="cart-subtotal">
                                         <th>Subtotal</th>
-                                        <td><span class="woocommerce-Price-amount amount">1,800.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></td>
+                                        <td><span class="woocommerce-Price-amount amount">1,200.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></td>
                                     </tr>
                                     <tr class="cart-shipping">
                                         <th>Shipping</th>
-                                        <td>ঢাকা সিটির বাহিরে: <span class="woocommerce-Price-amount amount">170.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></td>
+                                        <td id="shipping-cost-display">
+                                            <?php if (isset($data['shipping_method']) && $data['shipping_method'] === 'inside_dhaka'): ?>
+                                                ঢাকা সিটিতে: <span class="woocommerce-Price-amount amount">60.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span>
+                                            <?php else: ?>
+                                                ঢাকা সিটির বাহিরে: <span class="woocommerce-Price-amount amount">170.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span>
+                                            <?php endif; ?>
+                                        </td>
                                     </tr>
                                     <tr class="order-total">
                                         <th>Total</th>
-                                        <td><strong><span class="woocommerce-Price-amount amount">1,970.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></strong></td>
+                                        <td id="total-amount"><strong><span class="woocommerce-Price-amount amount">
+                                            <?php
+                                                $productPrice = 1200.00;
+                                                $shippingCost = (isset($data['shipping_method']) && $data['shipping_method'] === 'inside_dhaka') ? 60.00 : 170.00;
+                                                $totalAmount = $productPrice + $shippingCost;
+                                                echo number_format($totalAmount, 2);
+                                            ?>
+                                            <span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></strong>
+                                        </td>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -227,7 +241,7 @@
                                     </li>
                                 </ul>
                                 <div class="form-row place-order">
-                                    <button type="submit" class="button alt" id="place_order" value="<?php echo $order_form_info['confirm_order_button_text'] ?? 'Confirm Order'; ?>"><?php echo $order_form_info['confirm_order_button_text'] ?? 'Confirm Order'; ?>&nbsp;&nbsp;1,900.00৳&nbsp;</button>
+                                    <button type="submit" class="button alt confirm-order-button" id="place_order" value="<?php echo $order_form_info['confirm_order_button_text'] ?? 'Confirm Order'; ?>"><?php echo $order_form_info['confirm_order_button_text'] ?? 'Confirm Order'; ?>&nbsp;&nbsp;1,370.00৳&nbsp;</button>
                                 </div>
                             </div>
                         </div>
@@ -247,5 +261,58 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="<?php echo $config['assets_url']; ?>/js/script.js?v=<?php echo time(); ?>"></script>
+    <script>
+        // Function to update shipping cost and total amount based on selected shipping method
+        function updateShippingAndTotal() {
+            const insideDhakaRadio = document.getElementById('wcf_shipping_method_0_flat_rate3');
+            const outsideDhakaRadio = document.getElementById('wcf_shipping_method_0_flat_rate2');
+            const shippingCostDisplay = document.getElementById('shipping-cost-display');
+            const totalAmountDisplay = document.getElementById('total-amount').querySelector('span.woocommerce-Price-amount');
+            
+            const productPrice = 1200.00;
+            let shippingCost = 170.00; // Default to outside Dhaka
+            let shippingText = 'ঢাকা সিটির বাহিরে: ';
+            
+            if (insideDhakaRadio && insideDhakaRadio.checked) {
+                shippingCost = 60.00;
+                shippingText = 'ঢাকা সিটিতে: ';
+            }
+            
+            const totalAmount = productPrice + shippingCost;
+            
+            // Update shipping cost display
+            if (shippingCostDisplay) {
+                shippingCostDisplay.innerHTML = shippingText + '<span class="woocommerce-Price-amount amount">' + shippingCost.toFixed(2) + '<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span>';
+            }
+            
+            // Update total amount display
+            if (totalAmountDisplay) {
+                totalAmountDisplay.innerHTML = totalAmount.toFixed(2) + '<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span>';
+            }
+            
+            // Update the confirm order button text
+            const confirmOrderButton = document.querySelector('.confirm-order-button');
+            if (confirmOrderButton) {
+                confirmOrderButton.innerHTML = 'Confirm Order ' + totalAmount.toFixed(2) + '৳';
+            }
+        }
+        
+        // Add event listeners to shipping method radio buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const insideDhakaRadio = document.getElementById('wcf_shipping_method_0_flat_rate3');
+            const outsideDhakaRadio = document.getElementById('wcf_shipping_method_0_flat_rate2');
+            
+            if (insideDhakaRadio) {
+                insideDhakaRadio.addEventListener('change', updateShippingAndTotal);
+            }
+            
+            if (outsideDhakaRadio) {
+                outsideDhakaRadio.addEventListener('change', updateShippingAndTotal);
+            }
+            
+            // Initial update
+            updateShippingAndTotal();
+        });
+    </script>
 </body>
 </html>
