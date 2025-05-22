@@ -60,8 +60,16 @@ class OrderController {
                 $price = 0;
         }
         
-        // Get shipping cost - now free for all locations
+        // Calculate shipping cost based on shipping method
         $shipping_cost = 0.00;
+        switch ($data['shipping_method']) {
+            case 'inside_dhaka':
+                $shipping_cost = 60.00; // Dhaka City shipping cost
+                break;
+            case 'outside_dhaka':
+                $shipping_cost = 170.00; // Outside Dhaka shipping cost
+                break;
+        }
         
         // Check if honey addon was selected
         $honey_addon = isset($data['honey_addon']) ? 1 : 0;

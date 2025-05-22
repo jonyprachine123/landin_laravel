@@ -65,7 +65,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         // Calculate shipping cost
-        $shipping_cost = 0; // Free shipping
+        $shipping_cost = 0;
+        switch ($shipping_method) {
+            case 'inside_dhaka':
+                $shipping_cost = 60; // Dhaka City shipping cost
+                break;
+            case 'outside_dhaka':
+                $shipping_cost = 170; // Outside Dhaka shipping cost
+                break;
+        }
         
         // Update order
         $stmt = $db->prepare("
@@ -284,8 +292,8 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                                     <div class="form-group">
                                         <label for="shipping_method">Shipping Method</label>
                                         <select class="form-control" id="shipping_method" name="shipping_method" required>
-                                            <option value="inside_dhaka" <?php echo ($order['shipping_method'] === 'inside_dhaka') ? 'selected' : ''; ?>>ঢাকা সিটিতে - 0.00৳ (ফ্রি ডেলিভারি)</option>
-                                            <option value="outside_dhaka" <?php echo ($order['shipping_method'] === 'outside_dhaka') ? 'selected' : ''; ?>>ঢাকা সিটির বাহিরে - 0.00৳ (ফ্রি ডেলিভারি)</option>
+                                            <option value="inside_dhaka" <?php echo ($order['shipping_method'] === 'inside_dhaka') ? 'selected' : ''; ?>>ঢাকা সিটিতে - 60.00৳</option>
+                                            <option value="outside_dhaka" <?php echo ($order['shipping_method'] === 'outside_dhaka') ? 'selected' : ''; ?>>ঢাকা সিটির বাহিরে - 170.00৳</option>
                                         </select>
                                     </div>
                                     <div class="form-group">

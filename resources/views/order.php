@@ -136,11 +136,11 @@
                             <ul id="shipping_method" class="woocommerce-shipping-methods">
                                 <li>
                                     <input type="radio" name="shipping_method" id="wcf_shipping_method_0_flat_rate2" value="outside_dhaka" <?php echo (!isset($data['shipping_method']) || (isset($data['shipping_method']) && $data['shipping_method'] === 'outside_dhaka')) ? 'checked' : ''; ?>>
-                                    <label for="wcf_shipping_method_0_flat_rate2">ঢাকা সিটির বাহিরে: <span class="woocommerce-Price-amount amount">100.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></label>
+                                    <label for="wcf_shipping_method_0_flat_rate2">ঢাকা সিটির বাহিরে: <span class="woocommerce-Price-amount amount">170.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></label>
                                 </li>
                                 <li>
                                     <input type="radio" name="shipping_method" id="wcf_shipping_method_0_flat_rate3" value="inside_dhaka" <?php echo (isset($data['shipping_method']) && $data['shipping_method'] === 'inside_dhaka') ? 'checked' : ''; ?>>
-                                    <label for="wcf_shipping_method_0_flat_rate3">ঢাকা সিটিতে: <span class="woocommerce-Price-amount amount">50.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></label>
+                                    <label for="wcf_shipping_method_0_flat_rate3">ঢাকা সিটিতে: <span class="woocommerce-Price-amount amount">60.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></label>
                                 </li>
                             </ul>
                         </div>
@@ -179,11 +179,11 @@
                                     </tr>
                                     <tr class="cart-shipping">
                                         <th>Shipping</th>
-                                        <td>ঢাকা সিটির বাহিরে: <span class="woocommerce-Price-amount amount">100.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></td>
+                                        <td>ঢাকা সিটির বাহিরে: <span class="woocommerce-Price-amount amount">170.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></td>
                                     </tr>
                                     <tr class="order-total">
                                         <th>Total</th>
-                                        <td><strong><span class="woocommerce-Price-amount amount">1,900.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></strong></td>
+                                        <td><strong><span class="woocommerce-Price-amount amount">1,970.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></strong></td>
                                     </tr>
                                 </tfoot>
                             </table>
