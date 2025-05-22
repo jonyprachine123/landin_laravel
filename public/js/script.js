@@ -83,10 +83,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Get selected shipping cost
         const selectedShipping = document.querySelector('input[name="shipping_method"]:checked');
         if (selectedShipping) {
-            shippingCost = 0; // Free shipping for all locations
+            if (selectedShipping.value === 'inside_dhaka') {
+                shippingCost = window.insideDhakaCost || 60; // Inside Dhaka shipping cost
+            } else {
+                shippingCost = window.outsideDhakaCost || 170; // Outside Dhaka shipping cost
+            }
         } else {
-            // Default to free shipping
-            shippingCost = 0;
+            // Default to outside Dhaka shipping
+            shippingCost = window.outsideDhakaCost || 170;
         }
         
         // Honey add-on functionality removed

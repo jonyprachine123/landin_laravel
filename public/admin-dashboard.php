@@ -254,6 +254,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                                         <th>Customer</th>
                                         <th>Package</th>
                                         <th>Price</th>
+                                        <th>Shipping</th>
                                         <th>Date</th>
                                         <th>Status</th>
                                         <th>Actions</th>
@@ -262,7 +263,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                                 <tbody>
                                     <?php if (empty($orders)): ?>
                                         <tr>
-                                            <td colspan="7" class="text-center">No orders found</td>
+                                            <td colspan="8" class="text-center">No orders found</td>
                                         </tr>
                                     <?php else: ?>
                                         <?php foreach ($orders as $order): ?>
@@ -290,6 +291,20 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                                                     ?>
                                                 </td>
                                                 <td><?php echo number_format($order['price'], 2); ?>৳</td>
+                                                <td>
+                                                    <?php 
+                                                        switch ($order['shipping_method']) {
+                                                            case 'inside_dhaka':
+                                                                echo '60.00৳ (ঢাকা সিটিতে)';
+                                                                break;
+                                                            case 'outside_dhaka':
+                                                                echo '170.00৳ (ঢাকা সিটির বাহিরে)';
+                                                                break;
+                                                            default:
+                                                                echo number_format($order['shipping_cost'], 2) . '৳';
+                                                        }
+                                                    ?>
+                                                </td>
                                                 <td><?php echo date('d M Y', strtotime($order['created_at'])); ?></td>
                                                 <td>
                                                     <?php 

@@ -296,11 +296,11 @@
                                     <ul id="shipping_method" class="woocommerce-shipping-methods">
                                         <li>
                                             <input type="radio" name="shipping_method" id="wcf_shipping_method_0_flat_rate2" value="outside_dhaka" checked>
-                                            <label for="wcf_shipping_method_0_flat_rate2"><?php echo $order_form_info['outside_dhaka_label'] ?? 'ঢাকা সিটির বাহিরে'; ?>: <span class="woocommerce-Price-amount amount"><?php echo $order_form_info['outside_dhaka_cost'] ?? '0.00'; ?><span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></label>
+                                            <label for="wcf_shipping_method_0_flat_rate2"><?php echo $order_form_info['outside_dhaka_label'] ?? 'ঢাকা সিটির বাহিরে'; ?>: <span class="woocommerce-Price-amount amount"><?php echo $order_form_info['outside_dhaka_cost'] ?? '170.00'; ?><span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></label>
                                         </li>
                                         <li>
                                             <input type="radio" name="shipping_method" id="wcf_shipping_method_0_flat_rate3" value="inside_dhaka">
-                                            <label for="wcf_shipping_method_0_flat_rate3"><?php echo $order_form_info['inside_dhaka_label'] ?? 'ঢাকা সিটিতে'; ?>: <span class="woocommerce-Price-amount amount"><?php echo $order_form_info['inside_dhaka_cost'] ?? '0.00'; ?><span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></label>
+                                            <label for="wcf_shipping_method_0_flat_rate3"><?php echo $order_form_info['inside_dhaka_label'] ?? 'ঢাকা সিটিতে'; ?>: <span class="woocommerce-Price-amount amount"><?php echo $order_form_info['inside_dhaka_cost'] ?? '60.00'; ?><span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></label>
                                         </li>
                                     </ul>
                                 </div>
@@ -339,11 +339,18 @@
                                             </tr>
                                             <tr class="cart-shipping">
                                                 <th>Shipping</th>
-                                                <td>ঢাকা সিটির বাহিরে: <span class="woocommerce-Price-amount amount">0.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></td>
+                                                <td><?php echo $order_form_info['outside_dhaka_label'] ?? 'ঢাকা সিটির বাহিরে'; ?>: <span class="woocommerce-Price-amount amount"><?php echo $order_form_info['outside_dhaka_cost'] ?? '170.00'; ?><span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></td>
                                             </tr>
                                             <tr class="order-total">
                                                 <th>Total</th>
-                                                <td><strong><span class="woocommerce-Price-amount amount">1,200.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></strong></td>
+                                                <td><strong><span class="woocommerce-Price-amount amount">
+                                                    <?php
+                                                        $productPrice = 1200.00;
+                                                        $shippingCost = floatval($order_form_info['outside_dhaka_cost'] ?? '170.00');
+                                                        $totalAmount = $productPrice + $shippingCost;
+                                                        echo number_format($totalAmount, 2);
+                                                    ?>
+                                                    <span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></strong></td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -386,7 +393,7 @@
                                             </li>
                                         </ul>
                                         <div class="form-row place-order">
-                                            <button type="submit" class="button alt" id="place_order" value="Confirm Order">Confirm Order&nbsp;&nbsp;1,200.00৳&nbsp;</button>
+                                            <button type="submit" class="button alt" id="place_order" value="Confirm Order">Confirm Order&nbsp;&nbsp;<?php echo number_format($productPrice + $shippingCost, 2); ?>৳&nbsp;</button>
                                         </div>
                                     </div>
                                 </div>
@@ -413,6 +420,11 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Pass PHP shipping cost values to JavaScript
+        var insideDhakaCost = <?php echo floatval($order_form_info['inside_dhaka_cost'] ?? '60.00'); ?>;
+        var outsideDhakaCost = <?php echo floatval($order_form_info['outside_dhaka_cost'] ?? '170.00'); ?>;
+    </script>
     <script src="<?php echo $config['assets_url']; ?>/js/script.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>

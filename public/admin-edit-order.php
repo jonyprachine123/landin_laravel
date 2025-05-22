@@ -25,6 +25,17 @@ $stmt = $db->prepare("SELECT * FROM orders WHERE id = :id");
 $stmt->execute([':id' => $id]);
 $order = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// Get order form settings
+$stmt = $db->prepare("SELECT setting_value FROM settings WHERE setting_key = 'order_form_info'");
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Order form info
+$orderFormInfo = [];
+if ($result && !empty($result['setting_value'])) {
+    $orderFormInfo = json_decode($result['setting_value'], true) ?: [];
+}
+
 if (!$order) {
     // Order not found
     echo '404 - Order Not Found';
@@ -68,10 +79,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $shipping_cost = 0;
         switch ($shipping_method) {
             case 'inside_dhaka':
-                $shipping_cost = 60; // Dhaka City shipping cost
+                $shipping_cost = floatval($orderFormInfo['inside_dhaka_cost'] ?? '60.00'); // Dhaka City shipping cost
                 break;
             case 'outside_dhaka':
-                $shipping_cost = 170; // Outside Dhaka shipping cost
+                $shipping_cost = floatval($orderFormInfo['outside_dhaka_cost'] ?? '170.00'); // Outside Dhaka shipping cost
                 break;
         }
         
@@ -292,8 +303,8 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                                     <div class="form-group">
                                         <label for="shipping_method">Shipping Method</label>
                                         <select class="form-control" id="shipping_method" name="shipping_method" required>
-                                            <option value="inside_dhaka" <?php echo ($order['shipping_method'] === 'inside_dhaka') ? 'selected' : ''; ?>>ঢাকা সিটিতে - 60.00৳</option>
-                                            <option value="outside_dhaka" <?php echo ($order['shipping_method'] === 'outside_dhaka') ? 'selected' : ''; ?>>ঢাকা সিটির বাহিরে - 170.00৳</option>
+                                            <option value="inside_dhaka" <?php echo ($order['shipping_method'] === 'inside_dhaka') ? 'selected' : ''; ?>><?php echo $orderFormInfo['inside_dhaka_label'] ?? 'ঢাকা সিটিতে'; ?> - <?php echo $orderFormInfo['inside_dhaka_cost'] ?? '60.00'; ?>৳</option>
+                                            <option value="outside_dhaka" <?php echo ($order['shipping_method'] === 'outside_dhaka') ? 'selected' : ''; ?>><?php echo $orderFormInfo['outside_dhaka_label'] ?? 'ঢাকা সিটির বাহিরে'; ?> - <?php echo $orderFormInfo['outside_dhaka_cost'] ?? '170.00'; ?>৳</option>
                                         </select>
                                     </div>
                                     <div class="form-group">

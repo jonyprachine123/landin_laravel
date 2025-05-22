@@ -362,7 +362,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="outside_dhaka_cost">Outside Dhaka Cost</label>
-                                            <input type="text" class="form-control" id="outside_dhaka_cost" name="outside_dhaka_cost" value="<?php echo htmlspecialchars($orderFormInfo['outside_dhaka_cost'] ?? '0.00'); ?>">
+                                            <input type="text" class="form-control" id="outside_dhaka_cost" name="outside_dhaka_cost" value="<?php echo htmlspecialchars($orderFormInfo['outside_dhaka_cost'] ?? '170.00'); ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -376,7 +376,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="inside_dhaka_cost">Inside Dhaka Cost</label>
-                                            <input type="text" class="form-control" id="inside_dhaka_cost" name="inside_dhaka_cost" value="<?php echo htmlspecialchars($orderFormInfo['inside_dhaka_cost'] ?? '0.00'); ?>">
+                                            <input type="text" class="form-control" id="inside_dhaka_cost" name="inside_dhaka_cost" value="<?php echo htmlspecialchars($orderFormInfo['inside_dhaka_cost'] ?? '60.00'); ?>">
                                         </div>
                                     </div>
                                 </div>
