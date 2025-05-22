@@ -278,11 +278,11 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                                                             case '1month':
                                                                 echo '১ বক্সে ৯০টি ট্যাবলেট | ১ মাস ১৫ দিনের কোর্স';
                                                                 break;
-                                                            case '15days':
-                                                                echo 'অ্যাজমা কিউর (১৫ দিনের প্যাকেজ)';
-                                                                break;
                                                             case '3month':
                                                                 echo '২ বক্সে ১৮০টি ট্যাবলেট ৩ মাসের সম্পূর্ণ কোর্স';
+                                                                break;
+                                                            case '15days':
+                                                                echo 'অ্যাজমা কিউর (১৫ দিনের প্যাকেজ) - Legacy';
                                                                 break;
                                                             default:
                                                                 echo htmlspecialchars($order['package']);
@@ -357,11 +357,11 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                                                                                     case '1month':
                                                                                         echo '১ বক্সে ৯০টি ট্যাবলেট | ১ মাস ১৫ দিনের কোর্স';
                                                                                         break;
-                                                                                    case '15days':
-                                                                                        echo 'অ্যাজমা কিউর (১৫ দিনের প্যাকেজ)';
-                                                                                        break;
                                                                                     case '3month':
                                                                                         echo '২ বক্সে ১৮০টি ট্যাবলেট ৩ মাসের সম্পূর্ণ কোর্স';
+                                                                                        break;
+                                                                                    case '15days':
+                                                                                        echo 'অ্যাজমা কিউর (১৫ দিনের প্যাকেজ) - Legacy';
                                                                                         break;
                                                                                     default:
                                                                                         echo htmlspecialchars($order['package']);
