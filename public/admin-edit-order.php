@@ -277,7 +277,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                                         <label for="package">Package</label>
                                         <select class="form-control" id="package" name="package" required>
                                             <option value="1month" <?php echo ($order['package'] === '1month') ? 'selected' : ''; ?>>১ বক্সে ৯০টি ট্যাবলেট | ১ মাস ১৫ দিনের কোর্স - 1,200.00৳</option>
-                                            <option value="15days" <?php echo ($order['package'] === '15days') ? 'selected' : ''; ?>>৫০ টি ট্যাবলেট | ১৫ দিনের কোর্স - 1,000.00৳</option>
+                                            <option value="15days" <?php echo ($order['package'] === '15days') ? 'selected' : ''; ?>>অ্যাজমা কিউর (১৫ দিনের প্যাকেজ) - 1,000.00৳</option>
                                             <option value="3month" <?php echo ($order['package'] === '3month') ? 'selected' : ''; ?>>২ বক্সে ১৮০টি ট্যাবলেট ৩ মাসের সম্পূর্ণ কোর্স - 2,300.00৳</option>
                                         </select>
                                     </div>

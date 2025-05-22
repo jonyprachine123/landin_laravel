@@ -276,13 +276,13 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                                                     <?php 
                                                         switch ($order['package']) {
                                                             case '1month':
-                                                                echo '১ মাসের প্যাকেজ';
+                                                                echo '১ বক্সে ৯০টি ট্যাবলেট | ১ মাস ১৫ দিনের কোর্স';
                                                                 break;
                                                             case '15days':
-                                                                echo '১৫ দিনের প্যাকেজ';
+                                                                echo 'অ্যাজমা কিউর (১৫ দিনের প্যাকেজ)';
                                                                 break;
                                                             case '3month':
-                                                                echo '৩ মাসের প্যাকেজ';
+                                                                echo '২ বক্সে ১৮০টি ট্যাবলেট ৩ মাসের সম্পূর্ণ কোর্স';
                                                                 break;
                                                             default:
                                                                 echo htmlspecialchars($order['package']);
@@ -355,13 +355,13 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                                                                             <?php 
                                                                                 switch ($order['package']) {
                                                                                     case '1month':
-                                                                                        echo '১ মাসের প্যাকেজ';
+                                                                                        echo '১ বক্সে ৯০টি ট্যাবলেট | ১ মাস ১৫ দিনের কোর্স';
                                                                                         break;
                                                                                     case '15days':
-                                                                                        echo '১৫ দিনের প্যাকেজ';
+                                                                                        echo 'অ্যাজমা কিউর (১৫ দিনের প্যাকেজ)';
                                                                                         break;
                                                                                     case '3month':
-                                                                                        echo '৩ মাসের প্যাকেজ';
+                                                                                        echo '২ বক্সে ১৮০টি ট্যাবলেট ৩ মাসের সম্পূর্ণ কোর্স';
                                                                                         break;
                                                                                     default:
                                                                                         echo htmlspecialchars($order['package']);
