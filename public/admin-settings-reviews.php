@@ -280,7 +280,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                     uploadStatus.classList.add('d-none');
                     
                     const xhr = new XMLHttpRequest();
-                    xhr.open('POST', 'admin-upload.php', true);
+                    xhr.open('POST', 'upload-handler.php', true);
                     
                     xhr.upload.onprogress = function(e) {
                         if (e.lengthComputable) {
