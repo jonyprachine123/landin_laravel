@@ -126,11 +126,20 @@
                     <h1>Dashboard</h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group me-2">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                            <a href="<?php echo $config['admin_settings_url']; ?>" class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
                         </div>
                     </div>
                 </div>
-
+                
+                <?php if (isset($_SESSION['success_message'])): ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <?php echo $_SESSION['success_message']; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php unset($_SESSION['success_message']); ?>
+                <?php endif; ?>
                 <!-- Summary Cards -->
                 <div class="row">
                     <div class="col-md-4">
@@ -279,6 +288,9 @@
                                                     <a href="/Landing/public/admin/orders/<?php echo $order['id']; ?>/edit" class="btn btn-sm btn-warning">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
+                                                    <button type="button" class="btn btn-sm btn-danger delete-order" data-bs-toggle="modal" data-bs-target="#deleteOrderModal<?php echo $order['id']; ?>">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                             
@@ -374,6 +386,27 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                             <a href="<?php echo $config['admin_edit_order_url'] . $order['id']; ?>/edit" class="btn btn-primary">Edit Order</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Delete Order Confirmation Modal -->
+                                            <div class="modal fade" id="deleteOrderModal<?php echo $order['id']; ?>" tabindex="-1" aria-labelledby="deleteOrderModalLabel<?php echo $order['id']; ?>" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-danger text-white">
+                                                            <h5 class="modal-title" id="deleteOrderModalLabel<?php echo $order['id']; ?>">Confirm Delete</h5>
+                                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Are you sure you want to delete Order #<?php echo $order['id']; ?>?</p>
+                                                            <p><strong>Customer:</strong> <?php echo htmlspecialchars($order['name']); ?></p>
+                                                            <p><strong>This action cannot be undone.</strong></p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                            <a href="admin-delete-order.php?id=<?php echo $order['id']; ?>" class="btn btn-danger">Delete Order</a>
                                                         </div>
                                                     </div>
                                                 </div>

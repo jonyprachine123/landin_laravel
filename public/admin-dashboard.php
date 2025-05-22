@@ -25,10 +25,28 @@ foreach ($orders as $order) {
     }
 }
 
-// Calculate total revenue
+// Calculate total revenue (only from successful orders)
 $totalRevenue = 0;
+$successfulOrders = 0;
 foreach ($orders as $order) {
-    $totalRevenue += $order['price'] + $order['shipping_cost'] + $order['honey_price'];
+    if ($order['status'] === 'successful') {
+        $totalRevenue += $order['price'] + $order['shipping_cost'] + $order['honey_price'];
+        $successfulOrders++;
+    }
+}
+
+// Check for success message
+$successMessage = '';
+if (isset($_SESSION['success_message'])) {
+    $successMessage = $_SESSION['success_message'];
+    unset($_SESSION['success_message']);
+}
+
+// Check for error message
+$errorMessage = '';
+if (isset($_SESSION['error_message'])) {
+    $errorMessage = $_SESSION['error_message'];
+    unset($_SESSION['error_message']);
 }
 
 // Handle logout
@@ -170,11 +188,27 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                     <h1>Dashboard</h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group me-2">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                            <a href="admin-settings.php" class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
                         </div>
                     </div>
                 </div>
-
+                
+                <?php if (!empty($successMessage)): ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <?php echo $successMessage; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endif; ?>
+                
+                <?php if (!empty($errorMessage)): ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <?php echo $errorMessage; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endif; ?>
+                
                 <!-- Summary Cards -->
                 <div class="row">
                     <div class="col-md-4">
@@ -200,7 +234,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                             <div class="card-body">
                                 <h5 class="card-title">Total Revenue</h5>
                                 <h2 class="card-text"><?php echo number_format($totalRevenue, 2); ?>৳</h2>
-                                <p class="card-text text-muted">All time revenue</p>
+                                <p class="card-text text-muted">From <?php echo $successfulOrders; ?> successful orders</p>
                             </div>
                         </div>
                     </div>
@@ -289,6 +323,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                                                     <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#orderModal<?php echo $order['id']; ?>">
                                                         <i class="fas fa-eye"></i> View
                                                     </button>
+                                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteOrderModal<?php echo $order['id']; ?>">
+                                                        <i class="fas fa-trash"></i> Delete
+                                                    </button>
                                                 </td>
                                             </tr>
                                             
@@ -356,6 +393,27 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                             <a href="admin-edit-order.php?id=<?php echo $order['id']; ?>" class="btn btn-primary">Edit Order</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Delete Order Confirmation Modal -->
+                                            <div class="modal fade" id="deleteOrderModal<?php echo $order['id']; ?>" tabindex="-1" aria-labelledby="deleteOrderModalLabel<?php echo $order['id']; ?>" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-danger text-white">
+                                                            <h5 class="modal-title" id="deleteOrderModalLabel<?php echo $order['id']; ?>">Confirm Delete</h5>
+                                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Are you sure you want to delete Order #<?php echo $order['id']; ?>?</p>
+                                                            <p><strong>Customer:</strong> <?php echo htmlspecialchars($order['name']); ?></p>
+                                                            <p><strong>This action cannot be undone.</strong></p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                            <a href="admin-delete-order.php?id=<?php echo $order['id']; ?>" class="btn btn-danger">Delete Order</a>
                                                         </div>
                                                     </div>
                                                 </div>

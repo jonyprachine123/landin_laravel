@@ -92,9 +92,26 @@ class OrderController {
     }
     
     public function thankYou() {
-        // Render the thank you page with config
+        // Get Meta Pixel code
+        $stmt = $this->db->prepare("SELECT setting_value FROM settings WHERE setting_key = 'meta_pixel_code'");
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $metaPixelCode = $result ? $result['setting_value'] : '';
+        
+        // Get thank you page info
+        $thankYouInfo = [];
+        $stmt = $this->db->prepare("SELECT setting_value FROM settings WHERE setting_key = 'thank_you_info'");
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result && !empty($result['setting_value'])) {
+            $thankYouInfo = json_decode($result['setting_value'], true);
+        }
+        
+        // Render the thank you page with config and settings
         view('thank-you', [
-            'config' => $this->config
+            'config' => $this->config,
+            'meta_pixel_code' => $metaPixelCode,
+            'thank_you_info' => $thankYouInfo
         ]);
     }
 }

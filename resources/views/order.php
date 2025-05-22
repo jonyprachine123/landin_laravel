@@ -16,7 +16,7 @@
         <div class="elementor-border-style">
             <div class="elementor-widget-wrap elementor-element-populated">
                 <div class="elementor-widget-container">
-                    <h2 class="elementor-heading-title elementor-size-default">অর্ডার করতে আপনার সঠিক তথ্য দিয়ে নিচের ফর্মটি পূরণ করে <span style="color:#EE5E11">Confirm Order</span> এ ক্লিক করুন:- <span style="color:#EE5E11">(অর্ডার দিয়ে প্রোডাক্ট না নিলে ডেলিভারি চার্জ দিতে হবে)</span></h2>
+                    <h2 class="elementor-heading-title elementor-size-default"><?php echo $order_form_info['order_form_heading'] ?? 'অর্ডার করতে আপনার সঠিক তথ্য দিয়ে নিচের ফর্মটি পূরণ করে <span style="color:#EE5E11">Confirm Order</span> এ ক্লিক করুন:-'; ?></h2>
                 </div>
 
                 <?php if (isset($errors) && !empty($errors)): ?>
@@ -30,11 +30,11 @@
                 <?php endif; ?>
 
                 <form action="/order" method="POST">
-                    <h3 style="font-size: 18px; margin-bottom: 15px; color: #000;">কোন প্যাকেজটি নিতে চান সিলেক্ট করুন :</h3>
+                    <h3 style="font-size: 18px; margin-bottom: 15px; color: #000;"><?php echo $order_form_info['package_select_text'] ?? 'কোন প্যাকেজটি নিতে চান সিলেক্ট করুন :'; ?></h3>
                     <div class="wcf-qty-options">
                         <div class="wcf-qty-row wcf-highlight">
                             <div class="ribbon">
-                                <span>সেরাবিক্রয়</span>
+                                <span><?php echo $order_form_info['best_seller_label'] ?? 'সেরাবিক্রয়'; ?></span>
                             </div>
                             <div class="wcf-item">
                                 <div class="wcf-item-selector">
@@ -219,15 +219,15 @@
                                     <li class="wc_payment_method payment_method_cod">
                                         <input id="payment_method_cod" type="radio" class="input-radio" name="payment_method" value="cod" checked="checked" style="display: none;">
                                         <label for="payment_method_cod">
-                                            ক্যাশ অন ডেলিভারি
+                                            <?php echo $order_form_info['cod_label'] ?? 'ক্যাশ অন ডেলিভারি'; ?>
                                         </label>
                                         <div class="payment_box payment_method_cod">
-                                            <p>আমি অবশ্যই পণ্যটি রিসিভ করবো, পণ্যটি হাতে পেয়ে টাকা পরিশোধ করবো, ইনশাআল্লাহ</p>
+                                            <p><?php echo $order_form_info['cod_description'] ?? 'আমি অবশ্যই পণ্যটি রিসিভ করবো, পণ্যটি হাতে পেয়ে টাকা পরিশোধ করবো, ইনশাআল্লাহ'; ?></p>
                                         </div>
                                     </li>
                                 </ul>
                                 <div class="form-row place-order">
-                                    <button type="submit" class="button alt" id="place_order" value="Confirm Order">Confirm Order&nbsp;&nbsp;1,900.00৳&nbsp;</button>
+                                    <button type="submit" class="button alt" id="place_order" value="<?php echo $order_form_info['confirm_order_button_text'] ?? 'Confirm Order'; ?>"><?php echo $order_form_info['confirm_order_button_text'] ?? 'Confirm Order'; ?>&nbsp;&nbsp;1,900.00৳&nbsp;</button>
                                 </div>
                             </div>
                         </div>

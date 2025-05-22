@@ -286,6 +286,33 @@ class AdminController {
         redirect($this->config['admin_dashboard_url']);
     }
     
+    public function deleteOrder($id) {
+        // Check if logged in
+        if (!isset($_SESSION['admin_id'])) {
+            redirect($this->config['admin_login_url']);
+            return;
+        }
+        
+        // Get order by ID to check if it exists
+        $stmt = $this->db->prepare("SELECT * FROM orders WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+        $order = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if (!$order) {
+            // Order not found
+            redirect($this->config['admin_dashboard_url']);
+            return;
+        }
+        
+        // Delete the order
+        $stmt = $this->db->prepare("DELETE FROM orders WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+        
+        // Redirect back to dashboard with success message
+        $_SESSION['success_message'] = 'Order #' . $id . ' has been deleted successfully.';
+        redirect($this->config['admin_dashboard_url']);
+    }
+    
     public function settings() {
         // Check if logged in
         if (!isset($_SESSION['admin_id'])) {
@@ -296,10 +323,41 @@ class AdminController {
         // Get all settings
         $settings = $this->getSettings();
         
+        // Get pricing info from settings
+        $pricingInfo = [];
+        if (isset($settings['pricing_info'])) {
+            $pricingInfo = json_decode($settings['pricing_info'], true) ?? [];
+        }
+        
+        // Get order form info from settings
+        $orderFormInfo = [];
+        if (isset($settings['order_form_info'])) {
+            $orderFormInfo = json_decode($settings['order_form_info'], true) ?? [];
+        }
+        
         view('admin/settings', [
             'settings' => $settings,
+            'pricingInfo' => $pricingInfo,
+            'orderFormInfo' => $orderFormInfo,
             'config' => $this->config
         ]);
+    }
+    
+    // Function to convert YouTube watch URL to embed URL
+    private function convertYoutubeUrl($url) {
+        // Check if it's already an embed URL
+        if (strpos($url, 'youtube.com/embed/') !== false) {
+            return $url;
+        }
+        
+        // Extract video ID from watch URL
+        $pattern = '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i';
+        if (preg_match($pattern, $url, $matches)) {
+            return 'https://www.youtube.com/embed/' . $matches[1];
+        }
+        
+        // Return original URL if no match found
+        return $url;
     }
     
     public function saveSettings() {
@@ -311,18 +369,114 @@ class AdminController {
         
         // Get form data
         $metaPixelCode = $_POST['meta_pixel_code'] ?? '';
+        $mainHeading = $_POST['main_heading'] ?? '';
+        $notificationText = $_POST['notification_text'] ?? '';
+        $buttonText = $_POST['button_text'] ?? '';
+        $orderButtonText = $_POST['order_button_text'] ?? '';
+        $youtubeUrl = $_POST['youtube_url'] ?? '';
+        
+        // Handle customer reviews - if the form was submitted with the reviews section
+        // but no reviews were present (all deleted), we should save an empty array
+        if (isset($_POST['customer_reviews_section_submitted'])) {
+            $customerReviews = isset($_POST['customer_reviews']) ? json_encode($_POST['customer_reviews']) : '[]';
+        } else {
+            // If the section wasn't in the form at all, don't update the setting
+            $customerReviews = null;
+        }
+        
+        // Get pricing information
+        $product1Description = $_POST['product1_description'] ?? '';
+        $product1Price = $_POST['product1_price'] ?? '';
+        $product2Description = $_POST['product2_description'] ?? '';
+        $product2Price = $_POST['product2_price'] ?? '';
+        $deliveryInfo = $_POST['delivery_info'] ?? '';
+        $phoneNumber = $_POST['phone_number'] ?? '';
+        $whatsappNumber = $_POST['whatsapp_number'] ?? '';
+        
+        // Get order form information
+        $orderFormHeading = $_POST['order_form_heading'] ?? '';
+        $packageSelectText = $_POST['package_select_text'] ?? '';
+        $bestSellerLabel = $_POST['best_seller_label'] ?? '';
+        $economyLabel = $_POST['economy_label'] ?? '';
+        $product1FullDescription = $_POST['product1_full_description'] ?? '';
+        $product1RegularPrice = $_POST['product1_regular_price'] ?? '';
+        $product1SalePrice = $_POST['product1_sale_price'] ?? '';
+        $product2FullDescription = $_POST['product2_full_description'] ?? '';
+        $product2RegularPrice = $_POST['product2_regular_price'] ?? '';
+        $product2SalePrice = $_POST['product2_sale_price'] ?? '';
+        $billingDetailsHeading = $_POST['billing_details_heading'] ?? '';
+        $nameLabel = $_POST['name_label'] ?? '';
+        $addressLabel = $_POST['address_label'] ?? '';
+        $phoneLabel = $_POST['phone_label'] ?? '';
+        $shippingHeading = $_POST['shipping_heading'] ?? '';
+        $outsideDhakaLabel = $_POST['outside_dhaka_label'] ?? '';
+        $outsideDhakaCost = $_POST['outside_dhaka_cost'] ?? '';
+        $insideDhakaLabel = $_POST['inside_dhaka_label'] ?? '';
+        $insideDhakaCost = $_POST['inside_dhaka_cost'] ?? '';
+        $orderSummaryHeading = $_POST['order_summary_heading'] ?? '';
+        $productColumnHeading = $_POST['product_column_heading'] ?? '';
+        $subtotalColumnHeading = $_POST['subtotal_column_heading'] ?? '';
+        $codLabel = $_POST['cod_label'] ?? '';
+        $codDescription = $_POST['cod_description'] ?? '';
+        $confirmOrderButtonText = $_POST['confirm_order_button_text'] ?? '';
+        
+        // Convert YouTube URL if needed
+        $youtubeUrl = $this->convertYoutubeUrl($youtubeUrl);
+        
+        // Create an array of pricing information
+        $pricingInfo = [
+            'product1_description' => $product1Description,
+            'product1_price' => $product1Price,
+            'product2_description' => $product2Description,
+            'product2_price' => $product2Price,
+            'delivery_info' => $deliveryInfo,
+            'phone_number' => $phoneNumber,
+            'whatsapp_number' => $whatsappNumber
+        ];
+        
+        // Create an array of order form information
+        $orderFormInfo = [
+            'order_form_heading' => $orderFormHeading,
+            'package_select_text' => $packageSelectText,
+            'best_seller_label' => $bestSellerLabel,
+            'economy_label' => $economyLabel,
+            'product1_full_description' => $product1FullDescription,
+            'product1_regular_price' => $product1RegularPrice,
+            'product1_sale_price' => $product1SalePrice,
+            'product2_full_description' => $product2FullDescription,
+            'product2_regular_price' => $product2RegularPrice,
+            'product2_sale_price' => $product2SalePrice,
+            'billing_details_heading' => $billingDetailsHeading,
+            'name_label' => $nameLabel,
+            'address_label' => $addressLabel,
+            'phone_label' => $phoneLabel,
+            'shipping_heading' => $shippingHeading,
+            'outside_dhaka_label' => $outsideDhakaLabel,
+            'outside_dhaka_cost' => $outsideDhakaCost,
+            'inside_dhaka_label' => $insideDhakaLabel,
+            'inside_dhaka_cost' => $insideDhakaCost,
+            'order_summary_heading' => $orderSummaryHeading,
+            'product_column_heading' => $productColumnHeading,
+            'subtotal_column_heading' => $subtotalColumnHeading,
+            'cod_label' => $codLabel,
+            'cod_description' => $codDescription,
+            'confirm_order_button_text' => $confirmOrderButtonText
+        ];
         
         // Save settings
         $this->saveSetting('meta_pixel_code', $metaPixelCode);
-        
-        // Get updated settings
-        $settings = $this->getSettings();
+        $this->saveSetting('main_heading', $mainHeading);
+        $this->saveSetting('notification_text', $notificationText);
+        $this->saveSetting('button_text', $buttonText);
+        $this->saveSetting('order_button_text', $orderButtonText);
+        $this->saveSetting('youtube_url', $youtubeUrl);
+        $this->saveSetting('customer_reviews', $customerReviews);
+        $this->saveSetting('pricing_info', json_encode($pricingInfo));
+        $this->saveSetting('order_form_info', json_encode($orderFormInfo));
         
         // Redirect back to settings page with success message
-        view('admin/settings', [
-            'settings' => $settings,
-            'success' => 'Settings have been saved successfully'
-        ]);
+        redirect($this->config['admin_settings_url'] . '?success=1');
+        exit;
     }
     
     private function getSettings() {
@@ -341,6 +495,11 @@ class AdminController {
     }
     
     private function saveSetting($key, $value) {
+        // If value is null, don't update this setting
+        if ($value === null) {
+            return;
+        }
+        
         // Check if setting exists
         $stmt = $this->db->prepare("SELECT id FROM settings WHERE setting_key = :key");
         $stmt->execute([':key' => $key]);

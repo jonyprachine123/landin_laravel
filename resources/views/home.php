@@ -33,15 +33,20 @@
 <body>
     <div class="site-container full-width">
         <div class="header-section">
-            <h2 class="elementor-heading-title elementor-size-default">হার্ট, কিডনি, লিভার, স্কিন, চক্ষু — সুস্থ জীবনের প্রাকৃতিক টনিক <b style="color:#EE5E11">নিডাস</b></h2>
+            <h2 class="elementor-heading-title elementor-size-default"><?php echo $main_heading ?? 'হার্ট, কিডনি, লিভার, স্কিন, চক্ষু — সুস্থ জীবনের প্রাকৃতিক টনিক <b style="color:#EE5E11">নিডাস</b>'; ?></h2>
             
             <div class="notification-box">
-                <p class="notification-text">নিয়মিত নিডাস খেলেই ইনশাআল্লাহ ইনফেকশন, কোলেস্টেরল, ডায়াবেটিস, ও গ্যাস্ট্রিক থেকে মুক্তি!</p>
+                <p class="notification-text"><?php echo $notification_text ?? 'নিয়মিত নিডাস খেলেই ইনশাআল্লাহ ইনফেকশন, কোলেস্টেরল, ডায়াবেটিস, ও গ্যাস্ট্রিক থেকে মুক্তি!'; ?></p>
             </div>
+            
+            <!-- Debug info -->
+            <?php if(isset($button_text)): ?>
+                <!-- <div style="background: yellow; padding: 5px;">Button text value: <?php echo htmlspecialchars($button_text); ?></div> -->
+            <?php endif; ?>
             
             <div class="button-container">
                 <a href="#testimonials" class="elementor-button elementor-size-sm" role="button">
-                    <span class="elementor-button-text">আমাদের সম্মানিত কাস্টমারদের মতামত</span>
+                    <span class="elementor-button-text"><?php echo isset($button_text) ? $button_text : 'আমাদের সম্মানিত কাস্টমারদের মতামত'; ?></span>
                     <span class="elementor-button-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="circle-down-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg>
                     </span>
@@ -50,12 +55,17 @@
         </div>
 
         <main class="site-main">
+            <!-- Debug info -->
+            <?php if(isset($youtube_url)): ?>
+                <!-- <div style="background: yellow; padding: 5px;">YouTube URL value: <?php echo htmlspecialchars($youtube_url); ?></div> -->
+            <?php endif; ?>
+            
             <section class="youtube-section">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-12">
                             <div class="video-container">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/Eod9gvxhHuU" title="১৮ বছরের শ্বাসকষ্টের যন্ত্রণায় মুক্তি—একটি গল্প যা বদলে দিয়েছে জীবনের মানে!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <iframe width="560" height="315" src="<?php echo isset($youtube_url) ? $youtube_url : 'https://www.youtube.com/embed/Eod9gvxhHuU'; ?>" title="১৮ বছরের শ্বাসকষ্টের যন্ত্রণায় মুক্তি—একটি গল্প যা বদলে দিয়েছে জীবনের মানে!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>
@@ -85,36 +95,37 @@
                             
                             <!-- Slides -->
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <div class="review-slide">
-                                        <img src="<?php echo $config['assets_url']; ?>/images/Customer Review 1.png" alt="Customer Review 1" class="review-image">
+                                <?php if (isset($customer_reviews) && is_array($customer_reviews)): ?>
+                                    <?php foreach ($customer_reviews as $index => $review): ?>
+                                        <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
+                                            <div class="review-slide">
+                                                <img src="<?php echo $config['assets_url']; ?>/images/<?php echo htmlspecialchars($review['image']); ?>" alt="<?php echo htmlspecialchars($review['alt']); ?>" class="review-image">
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <!-- Default reviews if none are set -->
+                                    <div class="carousel-item active">
+                                        <div class="review-slide">
+                                            <img src="<?php echo $config['assets_url']; ?>/images/Customer Review 1.png" alt="Customer Review 1" class="review-image">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="review-slide">
-                                        <img src="<?php echo $config['assets_url']; ?>/images/Customer Review 2.jpg" alt="Customer Review 2" class="review-image">
+                                    <div class="carousel-item">
+                                        <div class="review-slide">
+                                            <img src="<?php echo $config['assets_url']; ?>/images/Customer Review 2.jpg" alt="Customer Review 2" class="review-image">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="review-slide">
-                                        <img src="<?php echo $config['assets_url']; ?>/images/Customer Review3.jpg" alt="Customer Review 3" class="review-image">
+                                    <div class="carousel-item">
+                                        <div class="review-slide">
+                                            <img src="<?php echo $config['assets_url']; ?>/images/Customer Review3.jpg" alt="Customer Review 3" class="review-image">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="review-slide">
-                                        <img src="<?php echo $config['assets_url']; ?>/images/Customer Review 4.jpg" alt="Customer Review 4" class="review-image">
+                                    <div class="carousel-item">
+                                        <div class="review-slide">
+                                            <img src="<?php echo $config['assets_url']; ?>/images/Customer Review 4.jpg" alt="Customer Review 4" class="review-image">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="review-slide">
-                                        <img src="<?php echo $config['assets_url']; ?>/images/Customer Review 1.png" alt="Customer Review 5" class="review-image">
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="review-slide">
-                                        <img src="<?php echo $config['assets_url']; ?>/images/Customer Review 2.jpg" alt="Customer Review 6" class="review-image">
-                                    </div>
-                                </div>
+                                <?php endif; ?>
                             </div>
                             
                             <!-- Controls -->
@@ -135,7 +146,7 @@
                                 <div class="col-12 text-center">
                                     <div class="order-button-wrapper">
                                         <a href="#order" class="order-more-button">
-                                            <span>অর্ডার করতে চাই</span>
+                                            <span><?php echo $order_button_text ?? 'অর্ডার করতে চাই'; ?></span>
                                             <i class="fas fa-arrow-circle-down"></i>
                                         </a>
                                     </div>
@@ -146,22 +157,22 @@
             <section class="pricing-section" id="pricing">
             <div class="pricing-container">
                 <div class="pricing-item">
-                ১ বক্সে ৯০টি ট্যাবলেট ১ মাস ১৫ দিনের কোর্স= <span class="price">অফারে মাত্র 1200/=</span> টাকা
+                <?php echo $pricing_info['product1_description'] ?? '১ বক্সে ৯০টি ট্যাবলেট ১ মাস ১৫ দিনের কোর্স='; ?> <span class="price"><?php echo $pricing_info['product1_price'] ?? 'অফারে মাত্র 1200/='; ?></span> টাকা
                 </div>
                 <div class="pricing-item">
-                ২ বক্সে ১৮০টি ট্যাবলেট ৩ মাসের সম্পূর্ণ কোর্স = <span class="price">অফারে মাত্র 2300/=</span> টাকা
+                <?php echo $pricing_info['product2_description'] ?? '২ বক্সে ১৮০টি ট্যাবলেট ৩ মাসের সম্পূর্ণ কোর্স ='; ?> <span class="price"><?php echo $pricing_info['product2_price'] ?? 'অফারে মাত্র 2300/='; ?></span> টাকা
                 </div>
                 <!-- <div class="pricing-item">
                     ১৫ দিনের জন্য ৫০ গ্রাম দৈনিক ২ বেলা = <span class="price">১০০০/=</span> টাকা
                 </div> -->
                 <div class="delivery-info">
-                    সারা বাংলাদেশে সম্পূর্ণ ফ্রি ডেলিভারি!
+                    <?php echo $pricing_info['delivery_info'] ?? 'সারা বাংলাদেশে সম্পূর্ণ ফ্রি ডেলিভারি!'; ?>
                 </div>
                 <div class="contact-info">
-                    সরাসরি কথা বলতে ক্লিক করুন <a href="tel: 880 1990-888222"> 880 1990-888222</a>
+                    সরাসরি কথা বলতে ক্লিক করুন <a href="tel: <?php echo $pricing_info['phone_number'] ?? '880 1990-888222'; ?>"> <?php echo $pricing_info['phone_number'] ?? '880 1990-888222'; ?></a>
                 </div>
                 <div class="contact-info">
-                WhatsApp :  880 1990-888222 <a href="https://wa.me/01990888222"> 880 1990-8882229</a>
+                WhatsApp : <?php echo $pricing_info['whatsapp_number'] ?? '880 1990-888222'; ?> <a href="https://wa.me/<?php echo str_replace(' ', '', $pricing_info['whatsapp_number'] ?? '01990888222'); ?>"> <?php echo $pricing_info['whatsapp_number'] ?? '880 1990-888222'; ?></a>
                 </div>
 
             </div>
@@ -173,28 +184,28 @@
                 <div class="elementor-border-style">
                     <div class="elementor-widget-wrap elementor-element-populated">
                         <div class="elementor-widget-container">
-                            <h2 class="elementor-heading-title elementor-size-default">অর্ডার করতে আপনার সঠিক তথ্য দিয়ে নিচের ফর্মটি পূরণ করে <span style="color:#EE5E11">Confirm Order</span> এ ক্লিক করুন:- <!-- <span style="color:#EE5E11">(অর্ডার দিয়ে প্রোডাক্ট না নিলে ডেলিভারি চার্জ দিতে হবে)</span> --></h2>
+                            <h2 class="elementor-heading-title elementor-size-default"><?php echo $order_form_info['order_form_heading'] ?? 'অর্ডার করতে আপনার সঠিক তথ্য দিয়ে নিচের ফর্মটি পূরণ করে <span style="color:#EE5E11">Confirm Order</span> এ ক্লিক করুন:-'; ?></h2>
                         </div>
 
                         <form action="<?php echo $config['order_page_url']; ?>" method="POST">
-                            <h3 style="font-size: 18px; margin-bottom: 15px; color: #000;">কোন প্যাকেজটি নিতে চান সিলেক্ট করুন :</h3>
+                            <h3 style="font-size: 18px; margin-bottom: 15px; color: #000;"><?php echo $order_form_info['package_select_text'] ?? 'কোন প্যাকেজটি নিতে চান সিলেক্ট করুন :'; ?></h3>
                             <div class="wcf-qty-options">
                                 <div class="wcf-qty-row wcf-highlight">
                                     <div class="ribbon">
-                                        <span>সেরাবিক্রয়</span>
+                                        <span><?php echo $order_form_info['best_seller_label'] ?? 'সেরাবিক্রয়'; ?></span>
                                     </div>
                                     <div class="wcf-item">
                                         <div class="wcf-item-selector">
                                             <input type="radio" id="package1" name="package" value="1month" checked>
                                         </div>
                                         <div class="wcf-item-image">
-                                            <img src="<?php echo $config['assets_url']; ?>/images/product.webp" alt="১ বক্সে ৯০টি ট্যাবলেট | ১ মাস ১৫ দিনের কোর্স">
+                                            <img src="<?php echo $config['assets_url']; ?>/images/product.webp" alt="<?php echo $order_form_info['product1_full_description'] ?? '১ বক্সে ৯০টি ট্যাবলেট | ১ মাস ১৫ দিনের কোর্স'; ?>">
                                         </div>
                                         <div class="wcf-item-content-options">
-                                            <div class="wcf-item-wrap">১ বক্সে ৯০টি ট্যাবলেট | ১ মাস ১৫ দিনের কোর্স</div>
+                                            <div class="wcf-item-wrap"><?php echo $order_form_info['product1_full_description'] ?? '১ বক্সে ৯০টি ট্যাবলেট | ১ মাস ১৫ দিনের কোর্স'; ?></div>
                                             <div class="wcf-display-price">
-                                            <span style="text-decoration: line-through; color: #999; font-size: 16px;">৳1350</span>
-                                            <span style="color: #e63946; font-size: 20px; font-weight: bold; margin-left: 10px;">৳1200</span>
+                                            <span style="text-decoration: line-through; color: #999; font-size: 16px;"><?php echo $order_form_info['product1_regular_price'] ?? '১৩৫০'; ?></span>
+                                            <span style="color: #e63946; font-size: 20px; font-weight: bold; margin-left: 10px;"><?php echo $order_form_info['product1_sale_price'] ?? '১২০০'; ?></span>
                                             </div>
                                         </div>
                                     </div>
@@ -219,21 +230,21 @@
 
                                 <div class="wcf-qty-row">
                                     <div class="ribbon economy">
-                                        <span>সাশ্রয়ী</span>
+                                        <span><?php echo $order_form_info['economy_label'] ?? 'সাশ্রয়ী'; ?></span>
                                     </div>
                                     <div class="wcf-item">
                                         <div class="wcf-item-selector">
                                             <input type="radio" id="package3" name="package" value="3month">
                                         </div>
                                         <div class="wcf-item-image">
-                                            <img src="<?php echo $config['assets_url']; ?>/images/product.webp" alt="২ বক্সে ১৮০টি ট্যাবলেট ৩ মাসের সম্পূর্ণ কোর্স">
+                                            <img src="<?php echo $config['assets_url']; ?>/images/product.webp" alt="<?php echo $order_form_info['product2_full_description'] ?? '২ বক্সে ১৮০টি ট্যাবলেট ৩ মাসের সম্পূর্ণ কোর্স'; ?>">
                                         </div>
                                         <div class="wcf-item-content-options">
-                                            <div class="wcf-item-wrap">২ বক্সে ১৮০টি ট্যাবলেট ৩ মাসের সম্পূর্ণ কোর্স</div>
+                                            <div class="wcf-item-wrap"><?php echo $order_form_info['product2_full_description'] ?? '২ বক্সে ১৮০টি ট্যাবলেট ৩ মাসের সম্পূর্ণ কোর্স'; ?></div>
                                             <!-- <div class="wcf-item-subtext">৫০০ গ্রাম মধু ফ্রি</div> -->
                                             <div class="wcf-display-price">
-                                            <span style="text-decoration: line-through; color: #999; font-size: 16px;">৳2700</span>
-                                            <span style="color: #e63946; font-size: 20px; font-weight: bold; margin-left: 10px;">৳2300</span>
+                                            <span style="text-decoration: line-through; color: #999; font-size: 16px;"><?php echo $order_form_info['product2_regular_price'] ?? '২৭০০'; ?></span>
+                                            <span style="color: #e63946; font-size: 20px; font-weight: bold; margin-left: 10px;"><?php echo $order_form_info['product2_sale_price'] ?? '২৩০০'; ?></span>
                                             </div>
                                         </div>
                                     </div>
@@ -243,24 +254,24 @@
                             <div class="wcf-col2-set" id="customer_details">
                                 <div class="wcf-col-1">
                                     <div class="woocommerce-billing-fields">
-                                        <h3 id="billing_fields_heading">Billing details</h3>
+                                        <h3 id="billing_fields_heading"><?php echo $order_form_info['billing_details_heading'] ?? 'Billing details'; ?></h3>
                                         <div class="woocommerce-billing-fields__field-wrapper">
                                             <p class="form-row form-row-first wcf-column-100 validate-required" id="billing_first_name_field">
-                                                <label for="billing_first_name" class="required_field">আপনার নাম&nbsp;<span class="required" aria-hidden="true">*</span></label>
+                                                <label for="billing_first_name" class="required_field"><?php echo $order_form_info['name_label'] ?? 'আপনার নাম'; ?>&nbsp;<span class="required" aria-hidden="true">*</span></label>
                                                 <span class="woocommerce-input-wrapper">
                                                     <input type="text" class="input-text" name="name" id="billing_first_name" placeholder="এখানে আপনার নাম লিখুন" value="" required>
                                                 </span>
                                             </p>
                                             
                                             <p class="form-row address-field wcf-column-100 validate-required form-row-wide" id="billing_address_1_field">
-                                                <label for="billing_address_1" class="required_field">আপনার সম্পূর্ণ ঠিকানা&nbsp;<span class="required" aria-hidden="true">*</span></label>
+                                                <label for="billing_address_1" class="required_field"><?php echo $order_form_info['address_label'] ?? 'আপনার সম্পূর্ণ ঠিকানা'; ?>&nbsp;<span class="required" aria-hidden="true">*</span></label>
                                                 <span class="woocommerce-input-wrapper">
                                                     <input type="text" class="input-text" name="address" id="billing_address_1" placeholder="এখানে আপনার সম্পূর্ণ ঠিকানা লিখুন" value="" required>
                                                 </span>
                                             </p>
                                             
                                             <p class="form-row form-row-wide wcf-column-100 validate-required validate-phone" id="billing_phone_field">
-                                                <label for="billing_phone" class="required_field">আপনার মোবাইল নাম্বার&nbsp;<span class="required" aria-hidden="true">*</span></label>
+                                                <label for="billing_phone" class="required_field"><?php echo $order_form_info['phone_label'] ?? 'আপনার মোবাইল নাম্বার'; ?>&nbsp;<span class="required" aria-hidden="true">*</span></label>
                                                 <span class="woocommerce-input-wrapper">
                                                     <input type="tel" class="input-text" name="phone" id="billing_phone" placeholder="এখানে আপনার মোবাইল নাম্বার সঠিকভাবে লিখুন" value="" required>
                                                 </span>
@@ -280,29 +291,29 @@
                             </div>
                             
                             <div class="wcf-shipping-methods-wrapper">
-                                <h3 class="wcf-shipping-methods-title">Shipping</h3>
+                                <h3 class="wcf-shipping-methods-title"><?php echo $order_form_info['shipping_heading'] ?? 'Shipping'; ?></h3>
                                 <div class="wcf-shipping-method-options">
                                     <ul id="shipping_method" class="woocommerce-shipping-methods">
                                         <li>
                                             <input type="radio" name="shipping_method" id="wcf_shipping_method_0_flat_rate2" value="outside_dhaka" checked>
-                                            <label for="wcf_shipping_method_0_flat_rate2">ঢাকা সিটির বাহিরে: <span class="woocommerce-Price-amount amount">0.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></label>
+                                            <label for="wcf_shipping_method_0_flat_rate2"><?php echo $order_form_info['outside_dhaka_label'] ?? 'ঢাকা সিটির বাহিরে'; ?>: <span class="woocommerce-Price-amount amount"><?php echo $order_form_info['outside_dhaka_cost'] ?? '0.00'; ?><span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></label>
                                         </li>
                                         <li>
                                             <input type="radio" name="shipping_method" id="wcf_shipping_method_0_flat_rate3" value="inside_dhaka">
-                                            <label for="wcf_shipping_method_0_flat_rate3">ঢাকা সিটিতে: <span class="woocommerce-Price-amount amount">0.00<span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></label>
+                                            <label for="wcf_shipping_method_0_flat_rate3"><?php echo $order_form_info['inside_dhaka_label'] ?? 'ঢাকা সিটিতে'; ?>: <span class="woocommerce-Price-amount amount"><?php echo $order_form_info['inside_dhaka_cost'] ?? '0.00'; ?><span class="woocommerce-Price-currencySymbol">৳&nbsp;</span></span></label>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
 
                             <div class="wcf-order-wrap">
-                                <h3 id="order_review_heading">Your order</h3>
+                                <h3 id="order_review_heading"><?php echo $order_form_info['order_summary_heading'] ?? 'Your order'; ?></h3>
                                 <div id="order_review" class="woocommerce-checkout-review-order">
                                     <table class="shop_table woocommerce-checkout-review-order-table cartflows_table">
                                         <thead>
                                             <tr>
-                                                <th class="product-name">Product</th>
-                                                <th class="product-total">Subtotal</th>
+                                                <th class="product-name"><?php echo $order_form_info['product_column_heading'] ?? 'Product'; ?></th>
+                                                <th class="product-total"><?php echo $order_form_info['subtotal_column_heading'] ?? 'Subtotal'; ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -383,7 +394,7 @@
                         </form>
                         
                         <div class="elementor-widget-container" style="margin-top: 20px;">
-                            <h2 class="elementor-heading-title elementor-size-default">অর্ডার কন্ফার্ম করতে Confirm Order এ ক্লিক করুন</h2>
+                            <h2 class="elementor-heading-title elementor-size-default"><?php echo $order_form_info['order_confirmation_text'] ?? 'অর্ডার কন্ফার্ম করতে Confirm Order এ ক্লিক করুন'; ?></h2>
                         </div>
                     </div>
                 </div>
@@ -393,8 +404,8 @@
         <footer class="py-3 text-center">
             <div class="footer-copyright">
                 <p>&copy; <?php echo date('Y'); ?> 
-                    <a href="https://prachinebangla.com/" target="_blank" style="text-decoration: none; color: inherit;">
-                        Prachin Bangla Limited
+                    <a href="<?php echo $settings['footer_link'] ?? 'https://prachinebangla.com/'; ?>" target="_blank" style="text-decoration: none; color: inherit;">
+                        <?php echo $settings['footer_copyright'] ?? 'Prachin Bangla Limited'; ?>
                     </a>
                 </p>
             </div>

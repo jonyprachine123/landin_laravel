@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>নিডাস- ধন্যবাদ</title>
+    <title><?php echo $thank_you_info['page_title'] ?? 'নিডাস- ধন্যবাদ'; ?></title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Meta Pixel Code if available -->
@@ -200,7 +200,7 @@
     <div class="container">
         <header class="py-3 text-center">
             <div class="header-banner">
-                <h1 class="main-title"><span>নিডাস</span> - অর্ডার সম্পন্ন হয়েছে</h1>
+                <h1 class="main-title"><?php echo $thank_you_info['main_heading'] ?? '<span>নিডাস</span> - অর্ডার সম্পন্ন হয়েছে'; ?></h1>
             </div>
         </header>
 
@@ -211,10 +211,10 @@
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                     </svg>
                 </div>
-                <h2 class="thank-you-title">আপনার অর্ডার সফলভাবে গ্রহণ করা হয়েছে!</h2>
-                <p class="thank-you-text">আমাদের একজন প্রতিনিধি শীঘ্রই আপনার সাথে যোগাযোগ করবেন। আপনার সহযোগিতার জন্য ধন্যবাদ।</p>
+                <h2 class="thank-you-title"><?php echo $thank_you_info['success_message'] ?? 'আপনার অর্ডার সফলভাবে গ্রহণ করা হয়েছে!'; ?></h2>
+                <p class="thank-you-text"><?php echo $thank_you_info['thank_you_message'] ?? 'আমাদের একজন প্রতিনিধি শীঘ্রই আপনার সাথে যোগাযোগ করবেন। আপনার সহযোগিতার জন্য ধন্যবাদ।'; ?></p>
                 <div class="button-container">
-                    <a href="<?php echo $config['base_url']; ?>" class="home-button">হোম পেজে ফিরে যান
+                    <a href="<?php echo $config['base_url']; ?>" class="home-button"><?php echo $thank_you_info['home_button_text'] ?? 'হোম পেজে ফিরে যান'; ?>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10"></circle>
                             <polyline points="8 12 12 16 16 12"></polyline>
@@ -227,18 +227,18 @@
 
         <section class="contact-section py-4">
             <div class="contact-card">
-                <h3 class="contact-title">যেকোনো প্রয়োজনে যোগাযোগ করুন</h3>
+                <h3 class="contact-title"><?php echo $thank_you_info['contact_section_title'] ?? 'যেকোনো প্রয়োজনে যোগাযোগ করুন'; ?></h3>
                 <div class="contact-details">
-                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/01990888222">01990888222</a> 
-                    <p><strong>Phone:</strong> <a href="tel:0 1990-888222">0 1990-888222</a></p>
+                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/<?php echo str_replace(' ', '', $thank_you_info['whatsapp_number'] ?? '01990888222'); ?>"><?php echo $thank_you_info['whatsapp_number'] ?? '01990888222'; ?></a> 
+                    <p><strong>Phone:</strong> <a href="tel:<?php echo $thank_you_info['phone_number'] ?? '0 1990-888222'; ?>"><?php echo $thank_you_info['phone_number'] ?? '0 1990-888222'; ?></a></p>
                 </div>
             </div>
         </section>
 
         <footer class="py-3 text-center">
             <p>&copy; <?php echo date('Y'); ?> 
-            <a href="https://www.prachinebangla.com" target="_blank" rel="noopener noreferrer">
-            Prachin Bangla Limited
+            <a href="<?php echo $thank_you_info['footer_link'] ?? 'https://www.prachinebangla.com'; ?>" target="_blank" rel="noopener noreferrer">
+            <?php echo $thank_you_info['footer_text'] ?? 'Prachin Bangla Limited'; ?>
             </a>
             </p>
         </footer>
